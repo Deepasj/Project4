@@ -36,6 +36,13 @@ jobs:
             - ./venv
           key: v1-dependencies-{{ checksum "requirements.txt" }}
 
+      - run:
+          name: Install eksctl
+          command: |
+            curl --silent --location "https://github.com/weaveworks/eksctl/releases/download/v0.77.0/eksctl_Linux_amd64.tar.gz" | tar xz -C .
+            sudo chmod +x ./eksctl
+            sudo mv ./eksctl /usr/local/bin
+
       # run lint!
       - run:
           name: run lint
